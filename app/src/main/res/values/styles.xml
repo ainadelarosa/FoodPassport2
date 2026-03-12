@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="usuario">
+        <item name="android:textSize">64sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="contrase_a">
+        <item name="android:textSize">64sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="continuar">
+        <item name="android:textSize">64sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="registrarse">
+        <item name="android:textSize">64sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+</resources>
