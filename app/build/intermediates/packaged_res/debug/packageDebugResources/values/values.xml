@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="app_name">FoodPassport</string>
+    <string name="continuar">Continuar</string>
+    <string name="contrase_a">Contraseña</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="usuario">Usuario</string>
+    <style name="Theme.FoodPassport" parent="android:Theme.Material.Light.NoActionBar"/>
+    <style name="continuar">
+        <item name="android:textSize">64sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+    <style name="contrase_a">
+        <item name="android:textSize">64sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+    <style name="registrarse">
+        <item name="android:textSize">64sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+    <style name="usuario">
+        <item name="android:textSize">64sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+</resources>
