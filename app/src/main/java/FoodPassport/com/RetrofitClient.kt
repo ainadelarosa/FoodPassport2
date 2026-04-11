@@ -13,12 +13,8 @@ interface TranslateApi {
     ): TranslateResponse
 }
 
-data class TranslateResponse(
-    val responseData: TranslateData
-)
-data class TranslateData(
-    val translatedText: String
-)
+data class TranslateResponse(val responseData: TranslateData)
+data class TranslateData(val translatedText: String)
 
 object RetrofitClient {
     val api: MealApi by lazy {
@@ -35,5 +31,13 @@ object RetrofitClient {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(TranslateApi::class.java)
+    }
+
+    val countryInfoApi: CountryInfoApi by lazy {
+        Retrofit.Builder()
+            .baseUrl("https://restcountries.com/v3.1/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(CountryInfoApi::class.java)
     }
 }

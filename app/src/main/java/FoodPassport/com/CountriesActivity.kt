@@ -3,10 +3,10 @@ package FoodPassport.com
 import android.content.Intent
 import android.os.Bundle
 import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.*
 
-class CountriesActivity : AppCompatActivity() {
+class CountriesActivity : BaseActivity() {
 
     private lateinit var listView: ListView
     private lateinit var searchBar: EditText
@@ -14,14 +14,21 @@ class CountriesActivity : AppCompatActivity() {
     private var filteredCountries = listOf<Pair<String, String>>()
     private var adapter: ArrayAdapter<String>? = null
 
+    private val dbRef = FirebaseDatabase
+        .getInstance("https://foodpassport-40192-default-rtdb.firebaseio.com")
+        .getReference("countries")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_countries)
+        // setupDrawer injecta activity_countries dins del layout base
+        setupDrawer(R.layout.activity_countries)
+
+        // Posem el títol al toolbar base
+        findViewById<TextView>(R.id.toolbarTitle).text = "Recetas por países"
 
         listView = findViewById(R.id.listViewCountries)
         searchBar = findViewById(R.id.searchBarCountries)
 
-        // Inicialitzar adapter buit per evitar errors
         adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, mutableListOf())
         listView.adapter = adapter
 
@@ -31,7 +38,6 @@ class CountriesActivity : AppCompatActivity() {
             override fun afterTextChanged(s: android.text.Editable?) {}
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (adapter == null) return
                 val query = s.toString().lowercase()
                 filteredCountries = allCountries.filter {
                     it.second.lowercase().contains(query)
@@ -52,6 +58,28 @@ class CountriesActivity : AppCompatActivity() {
     }
 
     private fun loadCountries() {
+        dbRef.get().addOnSuccessListener { snapshot ->
+            if (snapshot.exists()) {
+                val countries = snapshot.children.mapNotNull { child ->
+                    val original = child.key?.replace("_", " ") ?: return@mapNotNull null
+                    val translated = child.getValue(String::class.java) ?: return@mapNotNull null
+                    Pair(original, translated)
+                }.sortedBy { it.second }
+
+                allCountries = countries
+                filteredCountries = countries
+                adapter?.clear()
+                adapter?.addAll(countries.map { it.second })
+                adapter?.notifyDataSetChanged()
+            } else {
+                translateAndSave()
+            }
+        }.addOnFailureListener {
+            translateAndSave()
+        }
+    }
+
+    private fun translateAndSave() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val response = RetrofitClient.api.getCountries()
@@ -66,12 +94,18 @@ class CountriesActivity : AppCompatActivity() {
                     }
                 }
 
-                allCountries = translated
-                filteredCountries = translated
+                val toSave = translated.associate {
+                    it.first.replace(" ", "_") to it.second
+                }
+                dbRef.setValue(toSave)
+
+                val sorted = translated.sortedBy { it.second }
+                allCountries = sorted
+                filteredCountries = sorted
 
                 withContext(Dispatchers.Main) {
                     adapter?.clear()
-                    adapter?.addAll(translated.map { it.second })
+                    adapter?.addAll(sorted.map { it.second })
                     adapter?.notifyDataSetChanged()
                 }
             } catch (e: Exception) {

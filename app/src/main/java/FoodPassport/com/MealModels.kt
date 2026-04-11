@@ -16,5 +16,4 @@ data class Meal(
 )
 
 data class CountryResponse(val meals: List<Country>?)
-
 data class Country(val strArea: String)
