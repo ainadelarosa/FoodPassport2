@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "142721226264",
+    "project_id": "foodpassport-40192",
+    "storage_bucket": "foodpassport-40192.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142721226264:android:88828e191f0e0a3012556d",
+        "android_client_info": {
+          "package_name": "FoodPassport.com"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHfYZoOGBl4yJcyxT7ozNUTYaaFDz4ee8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
