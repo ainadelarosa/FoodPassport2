@@ -71,7 +71,6 @@
         android:background="#FFFFFF"
         android:orientation="vertical">
 
-        <!-- Cabecera -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="140dp"
@@ -123,12 +122,8 @@
 
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#EEEEEE"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"/>
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+            android:background="#EEEEEE" android:layout_marginStart="20dp" android:layout_marginEnd="20dp"/>
 
         <!-- Mis favoritos -->
         <LinearLayout
@@ -156,12 +151,8 @@
 
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#EEEEEE"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"/>
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+            android:background="#EEEEEE" android:layout_marginStart="20dp" android:layout_marginEnd="20dp"/>
 
         <!-- Mis países -->
         <LinearLayout
@@ -189,12 +180,8 @@
 
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#EEEEEE"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"/>
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+            android:background="#EEEEEE" android:layout_marginStart="20dp" android:layout_marginEnd="20dp"/>
 
         <!-- Curiosidades -->
         <LinearLayout
@@ -222,22 +209,57 @@
 
         </LinearLayout>
 
-        <View
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+            android:background="#EEEEEE" android:layout_marginStart="20dp" android:layout_marginEnd="20dp"/>
+
+        <!-- Grupos amb badge -->
+        <LinearLayout
+            android:id="@+id/menuGroups"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#EEEEEE"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"/>
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@android:drawable/ic_menu_myplaces"
+                android:layout_marginEnd="16dp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Grupos de chat"
+                android:textSize="15sp"
+                android:textColor="#2D2D2D"/>
+
+            <TextView
+                android:id="@+id/menuGroupsBadge"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:background="@drawable/badge_background"
+                android:layout_marginEnd="4dp"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+            android:background="#EEEEEE" android:layout_marginStart="20dp" android:layout_marginEnd="20dp"/>
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"/>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#EEEEEE"/>
+        <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE"/>
 
         <!-- Cerrar sesión -->
         <LinearLayout

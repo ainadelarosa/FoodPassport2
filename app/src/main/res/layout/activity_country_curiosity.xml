@@ -5,7 +5,6 @@
     android:orientation="vertical"
     android:background="#F5F5DC">
 
-    <!-- Buscador -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,7 +17,7 @@
             android:layout_height="48dp"
             android:layout_weight="1"
             android:background="#FFFFFF"
-            android:hint="Escribe un país en español..."
+            android:hint="Buscar país..."
             android:inputType="textCapSentences"
             android:paddingStart="12dp"
             android:layout_marginEnd="8dp"/>
@@ -33,7 +32,6 @@
 
     </LinearLayout>
 
-    <!-- Loading -->
     <TextView
         android:id="@+id/loadingCuriosity"
         android:layout_width="match_parent"
@@ -45,20 +43,39 @@
         android:textSize="16sp"
         android:visibility="gone"/>
 
-    <!-- Contenido -->
-    <ScrollView
+    <ListView
+        android:id="@+id/listViewCuriosityCountries"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#F5F5DC"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:cacheColorHint="#00000000"/>
+
+    <ScrollView
+        android:id="@+id/scrollCardContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:visibility="gone">
 
         <LinearLayout
             android:id="@+id/cardContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp"
-            android:visibility="gone">
+            android:padding="16dp">
 
-            <!-- Bandera -->
+            <Button
+                android:id="@+id/btnBackToList"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="← Volver"
+                android:backgroundTint="#9E0202"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="12dp"/>
+
             <ImageView
                 android:id="@+id/flagImage"
                 android:layout_width="match_parent"
@@ -67,7 +84,6 @@
                 android:layout_marginBottom="16dp"
                 android:visibility="gone"/>
 
-            <!-- Nombre del país -->
             <TextView
                 android:id="@+id/tvCountryName"
                 android:layout_width="match_parent"
@@ -78,7 +94,6 @@
                 android:textColor="#9E0202"
                 android:layout_marginBottom="4dp"/>
 
-            <!-- Tarjeta de datos -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

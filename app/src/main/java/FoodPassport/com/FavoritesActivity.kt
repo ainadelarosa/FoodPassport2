@@ -53,11 +53,12 @@ class FavoritesActivity : BaseActivity() {
             emptyText.visibility = View.GONE
             listView.visibility = View.VISIBLE
 
-            listView.adapter = ArrayAdapter(
+            listView.adapter = object : ArrayAdapter<String>(
                 this,
-                android.R.layout.simple_list_item_1,
+                R.layout.item_country_list,
+                R.id.tvCountryItem,
                 list.map { it.second }.toMutableList()
-            )
+            ) {}
 
             listView.setOnItemClickListener { _, _, position, _ ->
                 val meal = favorites[position]

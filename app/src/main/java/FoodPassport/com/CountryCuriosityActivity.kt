@@ -1,6 +1,8 @@
 package FoodPassport.com
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.*
 import com.bumptech.glide.Glide
@@ -13,8 +15,8 @@ class CountryCuriosityActivity : BaseActivity() {
     private lateinit var searchBtn: Button
     private lateinit var loadingText: TextView
     private lateinit var cardContainer: LinearLayout
-
-    private lateinit var flagImage: android.widget.ImageView
+    private lateinit var scrollCardContainer: ScrollView
+    private lateinit var flagImage: ImageView
     private lateinit var tvCountryName: TextView
     private lateinit var tvOfficialName: TextView
     private lateinit var tvCapital: TextView
@@ -24,11 +26,11 @@ class CountryCuriosityActivity : BaseActivity() {
     private lateinit var tvLanguages: TextView
     private lateinit var tvCurrency: TextView
     private lateinit var tvMeals: TextView
+    private lateinit var listViewCountries: ListView
 
     private val db = FirebaseDatabase
         .getInstance("https://foodpassport-40192-default-rtdb.firebaseio.com")
 
-    // Mapa de nombres en español → nombre en inglés para RestCountries
     private val countryTranslations = mapOf(
         "afganistán" to "Afghanistan", "albania" to "Albania", "alemania" to "Germany",
         "andorra" to "Andorra", "angola" to "Angola", "arabia saudita" to "Saudi Arabia",
@@ -103,6 +105,8 @@ class CountryCuriosityActivity : BaseActivity() {
         "antigua y barbuda" to "Antigua and Barbuda"
     )
 
+    private var filteredCountries = countryTranslations.keys.sorted().toList()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupDrawer(R.layout.activity_country_curiosity)
@@ -112,6 +116,7 @@ class CountryCuriosityActivity : BaseActivity() {
         searchBar = findViewById(R.id.searchCuriosity)
         searchBtn = findViewById(R.id.btnSearchCuriosity)
         loadingText = findViewById(R.id.loadingCuriosity)
+        scrollCardContainer = findViewById(R.id.scrollCardContainer)
         cardContainer = findViewById(R.id.cardContainer)
         flagImage = findViewById(R.id.flagImage)
         tvCountryName = findViewById(R.id.tvCountryName)
@@ -123,6 +128,24 @@ class CountryCuriosityActivity : BaseActivity() {
         tvLanguages = findViewById(R.id.tvLanguages)
         tvCurrency = findViewById(R.id.tvCurrency)
         tvMeals = findViewById(R.id.tvMeals)
+        listViewCountries = findViewById(R.id.listViewCuriosityCountries)
+
+        filteredCountries = countryTranslations.keys.sorted().toList()
+        updateCountryList()
+
+        searchBar.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {}
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val q = s.toString().lowercase().trim()
+                filteredCountries = if (q.isEmpty()) {
+                    countryTranslations.keys.sorted().toList()
+                } else {
+                    countryTranslations.keys.filter { it.contains(q) }.sorted()
+                }
+                updateCountryList()
+            }
+        })
 
         searchBtn.setOnClickListener {
             val input = searchBar.text.toString().trim()
@@ -131,6 +154,31 @@ class CountryCuriosityActivity : BaseActivity() {
                 return@setOnClickListener
             }
             searchCountry(input)
+        }
+
+        findViewById<Button>(R.id.btnBackToList).setOnClickListener {
+            scrollCardContainer.visibility = View.GONE
+            listViewCountries.visibility = View.VISIBLE
+            searchBar.setText("")
+            filteredCountries = countryTranslations.keys.sorted().toList()
+            updateCountryList()
+        }
+    }
+
+    private fun updateCountryList() {
+        val displayList = filteredCountries.map { it.replaceFirstChar { c -> c.uppercase() } }
+        val adapter = object : ArrayAdapter<String>(
+            this,
+            R.layout.item_country_list,
+            R.id.tvCountryItem,
+            displayList
+        ) {}
+        listViewCountries.adapter = adapter
+
+        listViewCountries.setOnItemClickListener { _, _, position, _ ->
+            val selected = filteredCountries[position]
+            searchBar.setText(selected.replaceFirstChar { it.uppercase() })
+            searchCountry(selected)
         }
     }
 
@@ -142,9 +190,9 @@ class CountryCuriosityActivity : BaseActivity() {
         }
 
         loadingText.visibility = View.VISIBLE
-        cardContainer.visibility = View.GONE
+        scrollCardContainer.visibility = View.GONE
+        listViewCountries.visibility = View.GONE
 
-        // Intentar leer de Firebase primero
         val cacheRef = db.getReference("country_info/${nameEn.replace(" ", "_")}")
         cacheRef.get().addOnSuccessListener { snapshot ->
             if (snapshot.exists()) {
@@ -191,7 +239,6 @@ class CountryCuriosityActivity : BaseActivity() {
                 val flag = info.flags.png ?: ""
                 val officialName = info.name.official
 
-                // Buscar recetas de TheMealDB (usa nombre en inglés)
                 val mealsStr = try {
                     val mealsResponse = RetrofitClient.api.getRecipesByCountry(nameEn)
                     val meals = mealsResponse.meals
@@ -200,7 +247,6 @@ class CountryCuriosityActivity : BaseActivity() {
                     } else "Sin recetas disponibles"
                 } catch (e: Exception) { "Sin recetas disponibles" }
 
-                // Guardar en Firebase
                 val toSave = mapOf(
                     "capital" to capital,
                     "region" to region,
@@ -221,6 +267,8 @@ class CountryCuriosityActivity : BaseActivity() {
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
                     loadingText.visibility = View.GONE
+                    listViewCountries.visibility = View.VISIBLE
+                    scrollCardContainer.visibility = View.GONE
                     Toast.makeText(this@CountryCuriosityActivity, "Error: ${e.message}", Toast.LENGTH_LONG).show()
                 }
             }
@@ -234,7 +282,8 @@ class CountryCuriosityActivity : BaseActivity() {
         flag: String, meals: String
     ) {
         loadingText.visibility = View.GONE
-        cardContainer.visibility = View.VISIBLE
+        scrollCardContainer.visibility = View.VISIBLE
+        listViewCountries.visibility = View.GONE
 
         tvCountryName.text = nameEs.replaceFirstChar { it.uppercase() }
         tvOfficialName.text = "Nombre oficial: $officialName"
