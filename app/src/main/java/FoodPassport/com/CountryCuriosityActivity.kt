@@ -5,6 +5,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.*
+import androidx.activity.addCallback
 import com.bumptech.glide.Glide
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.*
@@ -133,6 +134,25 @@ class CountryCuriosityActivity : BaseActivity() {
         filteredCountries = countryTranslations.keys.sorted().toList()
         updateCountryList()
 
+        // Sobreescriure el botó de tornar enrere
+        onBackPressedDispatcher.addCallback(
+            this,
+            object : androidx.activity.OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    if (scrollCardContainer.visibility == View.VISIBLE) {
+                        scrollCardContainer.visibility = View.GONE
+                        listViewCountries.visibility = View.VISIBLE
+                        searchBar.setText("")
+                        filteredCountries = countryTranslations.keys.sorted().toList()
+                        updateCountryList()
+                    } else {
+                        isEnabled = false
+                        onBackPressedDispatcher.onBackPressed()
+                    }
+                }
+            }
+        )
+
         searchBar.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {}
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -154,14 +174,6 @@ class CountryCuriosityActivity : BaseActivity() {
                 return@setOnClickListener
             }
             searchCountry(input)
-        }
-
-        findViewById<Button>(R.id.btnBackToList).setOnClickListener {
-            scrollCardContainer.visibility = View.GONE
-            listViewCountries.visibility = View.VISIBLE
-            searchBar.setText("")
-            filteredCountries = countryTranslations.keys.sorted().toList()
-            updateCountryList()
         }
     }
 

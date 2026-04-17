@@ -67,15 +67,6 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <Button
-                android:id="@+id/btnBackToList"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="← Volver"
-                android:backgroundTint="#9E0202"
-                android:textColor="#FFFFFF"
-                android:layout_marginBottom="12dp"/>
-
             <ImageView
                 android:id="@+id/flagImage"
                 android:layout_width="match_parent"
@@ -110,7 +101,8 @@
                     android:textColor="#2D2D2D"
                     android:paddingBottom="10dp"/>
 
-                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE"/>
+                <View android:layout_width="match_parent" android:layout_height="1dp"
+                    android:background="#EEEEEE"/>
 
                 <TextView
                     android:id="@+id/tvCapital"
@@ -121,7 +113,8 @@
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"/>
 
-                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE"/>
+                <View android:layout_width="match_parent" android:layout_height="1dp"
+                    android:background="#EEEEEE"/>
 
                 <TextView
                     android:id="@+id/tvRegion"
@@ -132,7 +125,8 @@
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"/>
 
-                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE"/>
+                <View android:layout_width="match_parent" android:layout_height="1dp"
+                    android:background="#EEEEEE"/>
 
                 <TextView
                     android:id="@+id/tvPopulation"
@@ -143,7 +137,8 @@
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"/>
 
-                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE"/>
+                <View android:layout_width="match_parent" android:layout_height="1dp"
+                    android:background="#EEEEEE"/>
 
                 <TextView
                     android:id="@+id/tvArea"
@@ -154,7 +149,8 @@
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"/>
 
-                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE"/>
+                <View android:layout_width="match_parent" android:layout_height="1dp"
+                    android:background="#EEEEEE"/>
 
                 <TextView
                     android:id="@+id/tvLanguages"
@@ -165,7 +161,8 @@
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"/>
 
-                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE"/>
+                <View android:layout_width="match_parent" android:layout_height="1dp"
+                    android:background="#EEEEEE"/>
 
                 <TextView
                     android:id="@+id/tvCurrency"
@@ -176,7 +173,8 @@
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"/>
 
-                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE"/>
+                <View android:layout_width="match_parent" android:layout_height="1dp"
+                    android:background="#EEEEEE"/>
 
                 <TextView
                     android:id="@+id/tvMeals"
