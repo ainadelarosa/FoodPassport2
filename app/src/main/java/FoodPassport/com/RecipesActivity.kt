@@ -96,11 +96,12 @@ class RecipesActivity : BaseActivity() {
     }
 
     private fun mostrarRecetas(meals: List<Triple<String, String, String>>) {
-        val adapter = ArrayAdapter(
+        val adapter = object : ArrayAdapter<String>(
             this,
-            android.R.layout.simple_list_item_1,
+            R.layout.item_country_list,
+            R.id.tvCountryItem,
             meals.map { it.second }.toMutableList()
-        )
+        ) {}
         listView.adapter = adapter
 
         listView.setOnItemClickListener { _, _, position, _ ->

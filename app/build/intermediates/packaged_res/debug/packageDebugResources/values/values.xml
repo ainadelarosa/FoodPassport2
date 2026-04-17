@@ -10,6 +10,12 @@
     <string name="app_name">FoodPassport</string>
     <string name="continuar">Continuar</string>
     <string name="contrase_a">Contraseña</string>
+    <string name="gcm_defaultSenderId" translatable="false">142721226264</string>
+    <string name="google_api_key" translatable="false">AIzaSyDHfYZoOGBl4yJcyxT7ozNUTYaaFDz4ee8</string>
+    <string name="google_app_id" translatable="false">1:142721226264:android:88828e191f0e0a3012556d</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDHfYZoOGBl4yJcyxT7ozNUTYaaFDz4ee8</string>
+    <string name="google_storage_bucket" translatable="false">foodpassport-40192.firebasestorage.app</string>
+    <string name="project_id" translatable="false">foodpassport-40192</string>
     <string name="registrarse">Registrarse</string>
     <string name="usuario">Usuario</string>
     <style name="Theme.FoodPassport" parent="android:Theme.Material.Light.NoActionBar"/>

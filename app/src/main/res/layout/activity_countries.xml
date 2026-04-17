@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F5F5DC"
-    android:padding="16dp">
+    android:background="#F5F5DC">
 
     <EditText
         android:id="@+id/searchBarCountries"
@@ -14,13 +13,16 @@
         android:background="#FFFFFF"
         android:paddingLeft="12dp"
         android:inputType="text"
-        android:layout_marginBottom="12dp"/>
+        android:layout_margin="12dp"/>
 
     <ListView
         android:id="@+id/listViewCountries"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:dividerHeight="8dp"/>
+        android:background="#F5F5DC"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:cacheColorHint="#00000000"/>
 
 </LinearLayout>

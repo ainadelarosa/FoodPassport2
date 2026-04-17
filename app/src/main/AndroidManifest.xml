@@ -39,6 +39,10 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name=".CountryListActivity"/>
         <activity android:name=".CountryCuriosityActivity"/>
+        <activity android:name=".GroupsActivity"/>
+        <activity android:name=".CreateGroupActivity"/>
+        <activity android:name=".GroupChatActivity"/>
+
     </application>
 
 </manifest>

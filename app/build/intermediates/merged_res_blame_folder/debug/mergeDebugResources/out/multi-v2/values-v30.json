@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "FoodPassport.com.app-mergeDebugResources-1:/values-v30/values-v30.xml",
+            "outputFile": "FoodPassport.com.app-mergeDebugResources-46:/values-v30/values-v30.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\ainad\\.gradle\\caches\\9.1.0\\transforms\\bd7b1b747599be7900d8fe557f8d3bce\\workspace\\transformed\\material3-release\\res\\values-v30\\values-v30.xml",
+                    "source": "C:\\Users\\ainad\\.gradle\\caches\\9.1.0\\transforms\\6cbd502353223cf8f6b99e6e7455e2bb\\workspace\\transformed\\material3-release\\res\\values-v30\\values-v30.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

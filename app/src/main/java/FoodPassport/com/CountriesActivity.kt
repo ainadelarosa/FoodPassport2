@@ -20,16 +20,19 @@ class CountriesActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // setupDrawer injecta activity_countries dins del layout base
         setupDrawer(R.layout.activity_countries)
 
-        // Posem el títol al toolbar base
         findViewById<TextView>(R.id.toolbarTitle).text = "Recetas por países"
 
         listView = findViewById(R.id.listViewCountries)
         searchBar = findViewById(R.id.searchBarCountries)
 
-        adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, mutableListOf())
+        adapter = object : ArrayAdapter<String>(
+            this,
+            R.layout.item_country_list,
+            R.id.tvCountryItem,
+            mutableListOf()
+        ) {}
         listView.adapter = adapter
 
         loadCountries()
@@ -68,9 +71,12 @@ class CountriesActivity : BaseActivity() {
 
                 allCountries = countries
                 filteredCountries = countries
-                adapter?.clear()
-                adapter?.addAll(countries.map { it.second })
-                adapter?.notifyDataSetChanged()
+
+                runOnUiThread {
+                    adapter?.clear()
+                    adapter?.addAll(countries.map { it.second })
+                    adapter?.notifyDataSetChanged()
+                }
             } else {
                 translateAndSave()
             }

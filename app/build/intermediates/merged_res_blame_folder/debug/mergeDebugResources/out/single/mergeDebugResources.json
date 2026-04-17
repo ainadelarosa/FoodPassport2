@@ -1,98 +1,190 @@
 [
     {
-        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-3:\\layout_activity_main.xml.flat",
-        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-5:\\layout\\activity_main.xml"
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\layout_activity_register.xml.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\layout\\activity_register.xml"
     },
     {
-        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-3:\\mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-5:\\mipmap-mdpi\\ic_launcher.webp"
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\layout_activity_group_invites.xml.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\layout\\activity_group_invites.xml"
     },
     {
-        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-3:\\layout_activity_register.xml.flat",
-        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-5:\\layout\\activity_register.xml"
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\drawable_item_country_border.xml.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\drawable\\item_country_border.xml"
     },
     {
-        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-3:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-5:\\mipmap-xxxhdpi\\ic_launcher.webp"
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\mipmap-hdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-3:\\drawable_rectangle_3.xml.flat",
-        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-5:\\drawable\\rectangle_3.xml"
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\layout_item_message_sent.xml.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\layout\\item_message_sent.xml"
     },
     {
-        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-3:\\mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-5:\\mipmap-xxhdpi\\ic_launcher.webp"
+        "merged": "FoodPassport.com.app-debug-48:/layout_activity_groups.xml.flat",
+        "source": "FoodPassport.com.app-main-50:/layout/activity_groups.xml"
     },
     {
-        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-3:\\drawable_ic_launcher_background.xml.flat",
-        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-5:\\drawable\\ic_launcher_background.xml"
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\layout_activity_meal_detail.xml.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\layout\\activity_meal_detail.xml"
     },
     {
-        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-3:\\mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-5:\\mipmap-hdpi\\ic_launcher_round.webp"
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\mipmap-xxxhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-3:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-5:\\mipmap-xxhdpi\\ic_launcher_round.webp"
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\mipmap-mdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-3:\\layout_activity_login.xml.flat",
-        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-5:\\layout\\activity_login.xml"
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\layout_activity_group_chat.xml.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\layout\\activity_group_chat.xml"
     },
     {
-        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-3:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-5:\\mipmap-xhdpi\\ic_launcher_round.webp"
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\drawable_rectangle_6.xml.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\drawable\\rectangle_6.xml"
     },
     {
-        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-3:\\xml_backup_rules.xml.flat",
-        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-5:\\xml\\backup_rules.xml"
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\mipmap-anydpi_ic_launcher.xml.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\mipmap-anydpi\\ic_launcher.xml"
     },
     {
-        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-3:\\mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-5:\\mipmap-xhdpi\\ic_launcher.webp"
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\mipmap-anydpi_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\mipmap-anydpi\\ic_launcher_round.xml"
     },
     {
-        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-3:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-5:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\drawable_badge_background.xml.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\drawable\\badge_background.xml"
     },
     {
-        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-3:\\xml_data_extraction_rules.xml.flat",
-        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-5:\\xml\\data_extraction_rules.xml"
+        "merged": "FoodPassport.com.app-debug-48:/layout_activity_base.xml.flat",
+        "source": "FoodPassport.com.app-main-50:/layout/activity_base.xml"
     },
     {
-        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-3:\\mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-5:\\mipmap-mdpi\\ic_launcher_round.webp"
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\mipmap-hdpi\\ic_launcher.webp"
     },
     {
-        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-3:\\drawable_ic_launcher_foreground.xml.flat",
-        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-5:\\drawable\\ic_launcher_foreground.xml"
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\layout_activity_country_list.xml.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\layout\\activity_country_list.xml"
     },
     {
-        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-3:\\drawable_logo_foodpassport.png.flat",
-        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-5:\\drawable\\logo_foodpassport.png"
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\mipmap-xxhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-3:\\mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-5:\\mipmap-hdpi\\ic_launcher.webp"
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\layout\\activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-3:\\drawable_bg_login_card.xml.flat",
-        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-5:\\drawable\\bg_login_card.xml"
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\drawable_ic_menu.xml.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\drawable\\ic_menu.xml"
     },
     {
-        "merged": "FoodPassport.com.app-debug-3:/layout_activity_register.xml.flat",
-        "source": "FoodPassport.com.app-main-5:/layout/activity_register.xml"
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\layout_activity_favorites.xml.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\layout\\activity_favorites.xml"
     },
     {
-        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-3:\\drawable_rectangle_6.xml.flat",
-        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-5:\\drawable\\rectangle_6.xml"
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\layout_item_invite.xml.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\layout\\item_invite.xml"
     },
     {
-        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-3:\\mipmap-anydpi_ic_launcher_round.xml.flat",
-        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-5:\\mipmap-anydpi\\ic_launcher_round.xml"
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\layout_activity_countries.xml.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\layout\\activity_countries.xml"
     },
     {
-        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-3:\\mipmap-anydpi_ic_launcher.xml.flat",
-        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-5:\\mipmap-anydpi\\ic_launcher.xml"
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\layout_activity_base.xml.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\layout\\activity_base.xml"
+    },
+    {
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\xml\\backup_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\drawable_logo_foodpassport.png.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\drawable\\logo_foodpassport.png"
+    },
+    {
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\layout_activity_country_curiosity.xml.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\layout\\activity_country_curiosity.xml"
+    },
+    {
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\mipmap-xhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\layout_item_group.xml.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\layout\\item_group.xml"
+    },
+    {
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\drawable_rounded_button_black.xml.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\drawable\\rounded_button_black.xml"
+    },
+    {
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\mipmap-xhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\layout_activity_groups.xml.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\layout\\activity_groups.xml"
+    },
+    {
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\mipmap-xxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\drawable_rounded_card.xml.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\drawable\\rounded_card.xml"
+    },
+    {
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\layout_item_message_received.xml.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\layout\\item_message_received.xml"
+    },
+    {
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\drawable_bg_login_card.xml.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\drawable\\bg_login_card.xml"
+    },
+    {
+        "merged": "FoodPassport.com.app-debug-48:/layout_item_group.xml.flat",
+        "source": "FoodPassport.com.app-main-50:/layout/item_group.xml"
+    },
+    {
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\layout_activity_login.xml.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\layout_item_country_list.xml.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\layout\\item_country_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\drawable_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\drawable\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\layout_activity_recipes.xml.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\layout\\activity_recipes.xml"
+    },
+    {
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\mipmap-mdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\drawable_rectangle_3.xml.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\drawable\\rectangle_3.xml"
+    },
+    {
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\xml\\data_extraction_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-debug-48:\\layout_activity_create_group.xml.flat",
+        "source": "C:\\Users\\ainad\\.gradle\\daemon\\9.1.0\\FoodPassport.com.app-main-50:\\layout\\activity_create_group.xml"
     }
 ]
