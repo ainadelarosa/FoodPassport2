@@ -136,7 +136,7 @@ open class BaseActivity : AppCompatActivity() {
 
             val msgsListener = object : ValueEventListener {
                 override fun onDataChange(msgsSnap: DataSnapshot) {
-                    // Llegir lastSeen cada vegada
+                    
                     lastSeenRef.get().addOnSuccessListener { lastSeenSnap ->
                         val lastSeen = lastSeenSnap.getValue(Long::class.java) ?: 0L
                         var unread = 0
