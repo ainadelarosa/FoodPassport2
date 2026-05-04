@@ -1,7 +1,9 @@
 package FoodPassport.com
 
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.*
+import androidx.core.view.WindowCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
@@ -36,6 +38,10 @@ class GroupChatActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setupDrawer(R.layout.activity_group_chat)
 
+        // Forçar que el layout es redimensioni quan surt el teclat
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        WindowCompat.setDecorFitsSystemWindows(window, true)
+
         groupId = intent.getStringExtra("groupId") ?: ""
         groupName = intent.getStringExtra("groupName") ?: ""
 
@@ -65,7 +71,6 @@ class GroupChatActivity : BaseActivity() {
     override fun onPause() {
         super.onPause()
         stopListening()
-        // Guardar el timestamp actual com a últim vist
         markAsRead()
     }
 
@@ -95,12 +100,15 @@ class GroupChatActivity : BaseActivity() {
                 if (messages.isNotEmpty()) {
                     listView.smoothScrollToPosition(messages.size - 1)
                 }
-                // Marcar com a llegit cada vegada que arriben missatges nous
                 markAsRead()
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@GroupChatActivity, "Error: ${error.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@GroupChatActivity,
+                    "Error: ${error.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
 
@@ -115,7 +123,6 @@ class GroupChatActivity : BaseActivity() {
     }
 
     private fun markAsRead() {
-        // Guardar el timestamp actual a Firebase per saber fins on hem llegit
         db.getReference("last_seen/$uid/$groupId")
             .setValue(System.currentTimeMillis())
     }

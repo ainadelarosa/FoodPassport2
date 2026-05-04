@@ -6,6 +6,9 @@ import android.view.Gravity
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -20,6 +23,20 @@ open class BaseActivity : AppCompatActivity() {
     fun setupDrawer(contentLayoutId: Int): DrawerLayout {
         setContentView(R.layout.activity_base)
         drawerLayout = findViewById(R.id.drawerLayout)
+
+        // Fer que el toolbar respecti la status bar
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        val toolbar = findViewById<LinearLayout>(R.id.baseToolbar)
+        ViewCompat.setOnApplyWindowInsetsListener(toolbar) { view, insets ->
+            val statusBarHeight = insets.getInsets(WindowInsetsCompat.Type.statusBars()).top
+            view.setPadding(
+                view.paddingLeft,
+                statusBarHeight,
+                view.paddingRight,
+                view.paddingBottom
+            )
+            insets
+        }
 
         val frame = findViewById<FrameLayout>(R.id.frameContent)
         layoutInflater.inflate(contentLayoutId, frame, true)
@@ -37,7 +54,7 @@ open class BaseActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        startNotificationListeners()
+        listenNotifications()
     }
 
     override fun onPause() {
@@ -107,19 +124,17 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
-    private fun startNotificationListeners() {
+    private fun listenNotifications() {
         val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
         val badge = findViewById<TextView>(R.id.menuGroupsBadge) ?: return
 
         stopAllListeners()
 
-        // Mapa per guardar els no llegits per grup
-        val unreadPerGroup = mutableMapOf<String, Int>()
         var inviteCount = 0
+        var unreadMsgCount = 0
 
         fun updateBadge() {
-            val totalUnread = unreadPerGroup.values.sum()
-            val total = totalUnread + inviteCount
+            val total = inviteCount + unreadMsgCount
             runOnUiThread {
                 if (total > 0) {
                     badge.visibility = View.VISIBLE
@@ -136,7 +151,6 @@ open class BaseActivity : AppCompatActivity() {
 
             val msgsListener = object : ValueEventListener {
                 override fun onDataChange(msgsSnap: DataSnapshot) {
-                    
                     lastSeenRef.get().addOnSuccessListener { lastSeenSnap ->
                         val lastSeen = lastSeenSnap.getValue(Long::class.java) ?: 0L
                         var unread = 0
@@ -147,7 +161,7 @@ open class BaseActivity : AppCompatActivity() {
                                 unread++
                             }
                         }
-                        unreadPerGroup[groupId] = unread
+                        unreadMsgCount = unread
                         updateBadge()
                     }
                 }
@@ -168,22 +182,18 @@ open class BaseActivity : AppCompatActivity() {
         }
         listen(invRef, invListener)
 
-        // Listener dels grups — quan canvien els grups, afegir listeners als nous
+        // Listener dels grups
         val groupsRef = db.getReference("user_groups/$uid")
         val groupsListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val groupIds = snapshot.children.mapNotNull { it.key }
 
-                // Netejar grups que ja no existeixen
-                val toRemove = unreadPerGroup.keys.filter { it !in groupIds }
-                toRemove.forEach { unreadPerGroup.remove(it) }
-
                 if (groupIds.isEmpty()) {
+                    unreadMsgCount = 0
                     updateBadge()
                     return
                 }
 
-                // Afegir listener per cada grup (si no en té ja)
                 groupIds.forEach { groupId ->
                     val msgsRef = db.getReference("groups/$groupId/messages")
                     if (!activeListeners.containsKey(msgsRef)) {

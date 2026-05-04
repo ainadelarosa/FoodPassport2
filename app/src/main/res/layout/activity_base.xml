@@ -13,29 +13,34 @@
         <LinearLayout
             android:id="@+id/baseToolbar"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="wrap_content"
             android:background="#9E0202"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:minHeight="64dp">
 
             <ImageButton
                 android:id="@+id/btnMenu"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
                 android:src="@drawable/ic_menu"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:tint="#FFFFFF"
-                android:contentDescription="Menú"/>
+                android:contentDescription="Menú"
+                android:layout_marginEnd="4dp"/>
 
             <ImageButton
                 android:id="@+id/btnBack"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
                 android:src="@android:drawable/ic_media_previous"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:tint="#FFFFFF"
-                android:contentDescription="Atrás"/>
+                android:contentDescription="Atrás"
+                android:layout_marginEnd="4dp"/>
 
             <TextView
                 android:id="@+id/toolbarTitle"
@@ -44,13 +49,13 @@
                 android:layout_weight="1"
                 android:text="FoodPassport"
                 android:textColor="#FFFFFF"
-                android:textSize="20sp"
+                android:textSize="22sp"
                 android:textStyle="bold"
                 android:layout_marginStart="8dp"/>
 
             <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
                 android:src="@drawable/logo_foodpassport"
                 android:layout_marginEnd="4dp"/>
 
@@ -123,7 +128,8 @@
         </LinearLayout>
 
         <View android:layout_width="match_parent" android:layout_height="1dp"
-            android:background="#EEEEEE" android:layout_marginStart="20dp" android:layout_marginEnd="20dp"/>
+            android:background="#EEEEEE" android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"/>
 
         <!-- Mis favoritos -->
         <LinearLayout
@@ -152,7 +158,8 @@
         </LinearLayout>
 
         <View android:layout_width="match_parent" android:layout_height="1dp"
-            android:background="#EEEEEE" android:layout_marginStart="20dp" android:layout_marginEnd="20dp"/>
+            android:background="#EEEEEE" android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"/>
 
         <!-- Mis países -->
         <LinearLayout
@@ -181,7 +188,8 @@
         </LinearLayout>
 
         <View android:layout_width="match_parent" android:layout_height="1dp"
-            android:background="#EEEEEE" android:layout_marginStart="20dp" android:layout_marginEnd="20dp"/>
+            android:background="#EEEEEE" android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"/>
 
         <!-- Curiosidades -->
         <LinearLayout
@@ -210,7 +218,8 @@
         </LinearLayout>
 
         <View android:layout_width="match_parent" android:layout_height="1dp"
-            android:background="#EEEEEE" android:layout_marginStart="20dp" android:layout_marginEnd="20dp"/>
+            android:background="#EEEEEE" android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"/>
 
         <!-- Grupos amb badge -->
         <LinearLayout
@@ -252,14 +261,16 @@
         </LinearLayout>
 
         <View android:layout_width="match_parent" android:layout_height="1dp"
-            android:background="#EEEEEE" android:layout_marginStart="20dp" android:layout_marginEnd="20dp"/>
+            android:background="#EEEEEE" android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"/>
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"/>
 
-        <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE"/>
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+            android:background="#EEEEEE"/>
 
         <!-- Cerrar sesión -->
         <LinearLayout
