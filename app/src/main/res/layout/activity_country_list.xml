@@ -26,7 +26,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="✅ Visitados"
+            android:text="Visitados"
             android:textSize="15sp"
             android:textStyle="bold"/>
 
@@ -36,7 +36,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="🌍 Quiero visitar"
+            android:text="Quiero visitar"
             android:textSize="15sp"
             android:textStyle="bold"/>
 

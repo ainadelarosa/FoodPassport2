@@ -87,8 +87,8 @@ class MealDetailActivity : BaseActivity() {
         val dbRef = database.getReference("instructions/$mealId")
         dbRef.get().addOnSuccessListener { snapshot ->
             if (snapshot.exists()) {
-                findViewById<TextView>(R.id.mealInstructions).text =
-                    snapshot.getValue(String::class.java) ?: ""
+                val text = snapshot.getValue(String::class.java) ?: ""
+                showInstructions(text)
             } else {
                 translateAndSave(mealId, dbRef)
             }
@@ -97,7 +97,10 @@ class MealDetailActivity : BaseActivity() {
         }
     }
 
-    private fun translateAndSave(mealId: String, dbRef: com.google.firebase.database.DatabaseReference) {
+    private fun translateAndSave(
+        mealId: String,
+        dbRef: com.google.firebase.database.DatabaseReference
+    ) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val response = RetrofitClient.api.getMealDetail(mealId)
@@ -116,6 +119,7 @@ class MealDetailActivity : BaseActivity() {
                     return@launch
                 }
 
+                // Traduir les instruccions en chunks
                 val chunks = mutableListOf<String>()
                 var start = 0
                 while (start < instructions.length) {
@@ -131,16 +135,76 @@ class MealDetailActivity : BaseActivity() {
                 }
 
                 val translatedInstructions = translatedChunks.joinToString(" ")
-                dbRef.setValue(translatedInstructions.take(9000))
+
+                // Construir el text d'ingredients
+                val ingredients = buildIngredientsList(meal)
+
+                // Desar instruccions a Firebase
+                val fullText = if (ingredients.isNotEmpty()) {
+                    "INGREDIENTES:\n$ingredients\n\nPREPARACIÓN:\n$translatedInstructions"
+                } else {
+                    translatedInstructions
+                }
+
+                dbRef.setValue(fullText.take(9000))
 
                 withContext(Dispatchers.Main) {
-                    findViewById<TextView>(R.id.mealInstructions).text = translatedInstructions
+                    showInstructions(fullText)
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
                     Toast.makeText(this@MealDetailActivity, "Error: ${e.message}", Toast.LENGTH_LONG).show()
                 }
             }
+        }
+    }
+
+    private fun buildIngredientsList(meal: Meal): String {
+        val ingredients = listOf(
+            meal.strIngredient1, meal.strIngredient2, meal.strIngredient3,
+            meal.strIngredient4, meal.strIngredient5, meal.strIngredient6,
+            meal.strIngredient7, meal.strIngredient8, meal.strIngredient9,
+            meal.strIngredient10, meal.strIngredient11, meal.strIngredient12,
+            meal.strIngredient13, meal.strIngredient14, meal.strIngredient15,
+            meal.strIngredient16, meal.strIngredient17, meal.strIngredient18,
+            meal.strIngredient19, meal.strIngredient20
+        )
+        val measures = listOf(
+            meal.strMeasure1, meal.strMeasure2, meal.strMeasure3,
+            meal.strMeasure4, meal.strMeasure5, meal.strMeasure6,
+            meal.strMeasure7, meal.strMeasure8, meal.strMeasure9,
+            meal.strMeasure10, meal.strMeasure11, meal.strMeasure12,
+            meal.strMeasure13, meal.strMeasure14, meal.strMeasure15,
+            meal.strMeasure16, meal.strMeasure17, meal.strMeasure18,
+            meal.strMeasure19, meal.strMeasure20
+        )
+
+        return ingredients.indices
+            .filter { !ingredients[it].isNullOrBlank() }
+            .joinToString("\n") { i ->
+                val measure = measures.getOrNull(i)?.trim() ?: ""
+                val ingredient = ingredients[i]?.trim() ?: ""
+                if (measure.isNotEmpty()) "• $measure $ingredient"
+                else "• $ingredient"
+            }
+    }
+
+    private fun showInstructions(fullText: String) {
+        if (fullText.contains("INGREDIENTES:") && fullText.contains("PREPARACIÓN:")) {
+            val parts = fullText.split("PREPARACIÓN:")
+            val ingredientsPart = parts[0].replace("INGREDIENTES:", "").trim()
+            val prepPart = parts[1].trim()
+
+            findViewById<TextView>(R.id.mealIngredients).text = ingredientsPart
+            findViewById<TextView>(R.id.mealInstructions).text = prepPart
+
+            findViewById<android.widget.LinearLayout>(R.id.sectionIngredients).visibility =
+                android.view.View.VISIBLE
+        } else {
+            // Si no hi ha ingredients, amagar la secció i mostrar només instruccions
+            findViewById<android.widget.LinearLayout>(R.id.sectionIngredients).visibility =
+                android.view.View.GONE
+            findViewById<TextView>(R.id.mealInstructions).text = fullText
         }
     }
 }
