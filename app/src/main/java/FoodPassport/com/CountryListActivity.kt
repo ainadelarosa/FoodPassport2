@@ -3,6 +3,7 @@ package FoodPassport.com
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -13,11 +14,14 @@ class CountryListActivity : BaseActivity() {
     private lateinit var listView: ListView
     private lateinit var tabVisited: TextView
     private lateinit var tabWantToVisit: TextView
+    private lateinit var tabMyVisited: TextView
     private lateinit var counter: TextView
+    private lateinit var emptyText: TextView
 
     private val db = FirebaseDatabase
         .getInstance("https://foodpassport-40192-default-rtdb.firebaseio.com")
     private val uid get() = FirebaseAuth.getInstance().currentUser?.uid ?: ""
+
 
     private var currentTab = "visited"
     private var visitedSet = mutableSetOf<String>()
@@ -72,20 +76,33 @@ class CountryListActivity : BaseActivity() {
         listView = findViewById(R.id.listViewCountryList)
         tabVisited = findViewById(R.id.tabVisited)
         tabWantToVisit = findViewById(R.id.tabWantToVisit)
+        tabMyVisited = findViewById(R.id.tabMyVisited)
         counter = findViewById(R.id.countryCounter)
+        emptyText = findViewById(R.id.emptyTextCountry)
 
-        loadFromFirebase {
-            updateAdapter()
-        }
+        loadFromFirebase { updateAdapter() }
 
         tabVisited.setOnClickListener {
             currentTab = "visited"
+            searchBar.visibility = View.VISIBLE
             updateTabStyle()
             updateAdapter()
         }
 
         tabWantToVisit.setOnClickListener {
             currentTab = "wantToVisit"
+            searchBar.visibility = View.VISIBLE
+            updateTabStyle()
+            updateAdapter()
+        }
+
+
+        tabMyVisited.setOnClickListener {
+            currentTab = "myVisited"
+
+            searchBar.visibility = View.GONE
+            searchBar.setText("")
+            filteredCountries = allCountries.toList()
             updateTabStyle()
             updateAdapter()
         }
@@ -104,26 +121,34 @@ class CountryListActivity : BaseActivity() {
     }
 
     private fun loadFromFirebase(onDone: () -> Unit) {
-        val ref = db.getReference("user_countries/$uid")
-        ref.get().addOnSuccessListener { snapshot ->
+        db.getReference("user_countries/$uid").get().addOnSuccessListener { snapshot ->
             visitedSet.clear()
             wantToVisitSet.clear()
             snapshot.child("visited").children.forEach {
-                val name = it.getValue(String::class.java) ?: return@forEach
-                visitedSet.add(name)
+                visitedSet.add(it.getValue(String::class.java) ?: return@forEach)
             }
             snapshot.child("wantToVisit").children.forEach {
-                val name = it.getValue(String::class.java) ?: return@forEach
-                wantToVisitSet.add(name)
+                wantToVisitSet.add(it.getValue(String::class.java) ?: return@forEach)
             }
             onDone()
         }.addOnFailureListener { onDone() }
     }
 
     private fun updateAdapter() {
+        when (currentTab) {
+            "myVisited" -> showMyVisited()
+            else -> showCheckboxList()
+        }
+    }
+
+
+    private fun showCheckboxList() {
         val currentSet = if (currentTab == "visited") visitedSet else wantToVisitSet
 
+        emptyText.visibility = View.GONE
+        listView.visibility = View.VISIBLE
         counter.text = "${currentSet.size} de ${allCountries.size} países"
+        listView.choiceMode = ListView.CHOICE_MODE_MULTIPLE
 
         val adapter = object : ArrayAdapter<String>(
             this,
@@ -132,7 +157,6 @@ class CountryListActivity : BaseActivity() {
         ) {}
 
         listView.adapter = adapter
-        listView.choiceMode = ListView.CHOICE_MODE_MULTIPLE
 
         filteredCountries.forEachIndexed { index, country ->
             listView.setItemChecked(index, currentSet.contains(country))
@@ -140,42 +164,67 @@ class CountryListActivity : BaseActivity() {
 
         listView.setOnItemClickListener { _, _, position, _ ->
             val country = filteredCountries[position]
-            val isChecked = listView.isItemChecked(position)
-
-            if (isChecked) {
-                currentSet.add(country)
-            } else {
-                currentSet.remove(country)
-            }
-
+            if (listView.isItemChecked(position)) currentSet.add(country)
+            else currentSet.remove(country)
             counter.text = "${currentSet.size} de ${allCountries.size} países"
             saveToFirebase()
         }
     }
 
-    private fun saveToFirebase() {
-        val ref = db.getReference("user_countries/$uid")
-        val data = mapOf(
-            "visited" to visitedSet.toList(),
-            "wantToVisit" to wantToVisitSet.toList()
+
+    private fun showMyVisited() {
+        listView.choiceMode = ListView.CHOICE_MODE_NONE
+
+        val sortedVisited = visitedSet.sorted()
+
+        if (sortedVisited.isEmpty()) {
+            listView.visibility = View.GONE
+            emptyText.visibility = View.VISIBLE
+            counter.text = "Aún no has visitado ningún país"
+            return
+        }
+
+        emptyText.visibility = View.GONE
+        listView.visibility = View.VISIBLE
+        counter.text = "Has visitado ${sortedVisited.size} países"
+
+        // Llista simple sense checkboxes
+        val adapter = ArrayAdapter(
+            this,
+            R.layout.item_country_list,
+            R.id.tvCountryItem,
+            sortedVisited
         )
-        ref.setValue(data)
+        listView.adapter = adapter
+
+
+        listView.setOnItemClickListener { _, _, _, _ -> }
+    }
+
+    private fun saveToFirebase() {
+        db.getReference("user_countries/$uid").setValue(
+            mapOf("visited" to visitedSet.toList(), "wantToVisit" to wantToVisitSet.toList())
+        )
     }
 
     private fun updateTabStyle() {
         val activeColor = android.graphics.Color.parseColor("#9E0202")
         val inactiveColor = android.graphics.Color.parseColor("#CCCCCC")
+        val darkText = android.graphics.Color.parseColor("#2D2D2D")
 
-        if (currentTab == "visited") {
-            tabVisited.setBackgroundColor(activeColor)
-            tabVisited.setTextColor(android.graphics.Color.WHITE)
-            tabWantToVisit.setBackgroundColor(inactiveColor)
-            tabWantToVisit.setTextColor(android.graphics.Color.parseColor("#2D2D2D"))
-        } else {
-            tabWantToVisit.setBackgroundColor(activeColor)
-            tabWantToVisit.setTextColor(android.graphics.Color.WHITE)
-            tabVisited.setBackgroundColor(inactiveColor)
-            tabVisited.setTextColor(android.graphics.Color.parseColor("#2D2D2D"))
+
+        listOf(tabVisited, tabWantToVisit, tabMyVisited).forEach {
+            it.setBackgroundColor(inactiveColor)
+            it.setTextColor(darkText)
         }
+
+
+        val activeTab = when (currentTab) {
+            "visited" -> tabVisited
+            "wantToVisit" -> tabWantToVisit
+            else -> tabMyVisited
+        }
+        activeTab.setBackgroundColor(activeColor)
+        activeTab.setTextColor(android.graphics.Color.WHITE)
     }
 }

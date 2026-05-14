@@ -53,6 +53,17 @@
                 android:textStyle="bold"
                 android:layout_marginStart="8dp"/>
 
+
+            <ImageButton
+                android:id="@+id/btnProfile"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:src="@android:drawable/ic_menu_myplaces"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:tint="#FFFFFF"
+                android:contentDescription="Mi perfil"
+                android:layout_marginEnd="4dp"/>
+
             <ImageView
                 android:layout_width="42dp"
                 android:layout_height="42dp"
@@ -68,13 +79,14 @@
 
     </LinearLayout>
 
-    <!-- MENÚ LATERAL -->
+
     <LinearLayout
         android:layout_width="280dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="#FFFFFF"
         android:orientation="vertical">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -84,10 +96,11 @@
             android:gravity="bottom"
             android:padding="20dp">
 
-            <ImageView
+
+            <FoodPassport.com.AvatarView
+                android:id="@+id/menuAvatarView"
                 android:layout_width="52dp"
                 android:layout_height="52dp"
-                android:src="@drawable/logo_foodpassport"
                 android:layout_marginBottom="8dp"/>
 
             <TextView
@@ -101,7 +114,37 @@
 
         </LinearLayout>
 
-        <!-- Recetas por países -->
+
+        <LinearLayout
+            android:id="@+id/menuProfile"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@android:drawable/ic_menu_myplaces"
+                android:layout_marginEnd="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mi perfil"
+                android:textSize="15sp"
+                android:textColor="#2D2D2D"/>
+
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+            android:background="#EEEEEE" android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"/>
+
+
         <LinearLayout
             android:id="@+id/menuCountries"
             android:layout_width="match_parent"
@@ -131,7 +174,7 @@
             android:background="#EEEEEE" android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"/>
 
-        <!-- Mis favoritos -->
+
         <LinearLayout
             android:id="@+id/menuFavorites"
             android:layout_width="match_parent"
@@ -161,7 +204,7 @@
             android:background="#EEEEEE" android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"/>
 
-        <!-- Mis países -->
+
         <LinearLayout
             android:id="@+id/menuCountryList"
             android:layout_width="match_parent"
@@ -191,7 +234,7 @@
             android:background="#EEEEEE" android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"/>
 
-        <!-- Curiosidades -->
+
         <LinearLayout
             android:id="@+id/menuCuriosity"
             android:layout_width="match_parent"
@@ -221,7 +264,7 @@
             android:background="#EEEEEE" android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"/>
 
-        <!-- Grupos amb badge -->
+
         <LinearLayout
             android:id="@+id/menuGroups"
             android:layout_width="match_parent"
@@ -272,7 +315,7 @@
         <View android:layout_width="match_parent" android:layout_height="1dp"
             android:background="#EEEEEE"/>
 
-        <!-- Cerrar sesión -->
+
         <LinearLayout
             android:id="@+id/menuLogout"
             android:layout_width="match_parent"

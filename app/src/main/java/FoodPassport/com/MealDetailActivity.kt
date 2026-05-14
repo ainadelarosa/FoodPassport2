@@ -18,6 +18,8 @@ class MealDetailActivity : BaseActivity() {
     private var mealNameEs = ""
     private var mealThumb = ""
 
+    private var countryEs = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupDrawer(R.layout.activity_meal_detail)
@@ -25,6 +27,8 @@ class MealDetailActivity : BaseActivity() {
         mealId = intent.getStringExtra("mealId") ?: ""
         mealNameEs = intent.getStringExtra("mealNameEs") ?: ""
         mealThumb = intent.getStringExtra("mealThumb") ?: ""
+        // Recollir el país passat per Intent des de RecipesActivity
+        countryEs = intent.getStringExtra("countryEs") ?: ""
 
         btnFavorite = findViewById(R.id.btnFavorite)
 
@@ -68,7 +72,12 @@ class MealDetailActivity : BaseActivity() {
                 Toast.makeText(this, "Eliminado de favoritos", Toast.LENGTH_SHORT).show()
             }
         } else {
-            ref.setValue(mapOf("name" to mealNameEs, "thumb" to mealThumb)).addOnSuccessListener {
+            // Ara també es guarda el país per poder agrupar els favorits per país a FavoritesActivity
+            ref.setValue(mapOf(
+                "name" to mealNameEs,
+                "thumb" to mealThumb,
+                "country" to countryEs
+            )).addOnSuccessListener {
                 isFavorite = true
                 updateStarIcon()
                 Toast.makeText(this, "Añadido a favoritos", Toast.LENGTH_SHORT).show()
@@ -119,7 +128,6 @@ class MealDetailActivity : BaseActivity() {
                     return@launch
                 }
 
-                // Traduir les instruccions en chunks
                 val chunks = mutableListOf<String>()
                 var start = 0
                 while (start < instructions.length) {
@@ -135,11 +143,8 @@ class MealDetailActivity : BaseActivity() {
                 }
 
                 val translatedInstructions = translatedChunks.joinToString(" ")
-
-                // Construir el text d'ingredients
                 val ingredients = buildIngredientsList(meal)
 
-                // Desar instruccions a Firebase
                 val fullText = if (ingredients.isNotEmpty()) {
                     "INGREDIENTES:\n$ingredients\n\nPREPARACIÓN:\n$translatedInstructions"
                 } else {
@@ -201,7 +206,6 @@ class MealDetailActivity : BaseActivity() {
             findViewById<android.widget.LinearLayout>(R.id.sectionIngredients).visibility =
                 android.view.View.VISIBLE
         } else {
-            // Si no hi ha ingredients, amagar la secció i mostrar només instruccions
             findViewById<android.widget.LinearLayout>(R.id.sectionIngredients).visibility =
                 android.view.View.GONE
             findViewById<TextView>(R.id.mealInstructions).text = fullText
