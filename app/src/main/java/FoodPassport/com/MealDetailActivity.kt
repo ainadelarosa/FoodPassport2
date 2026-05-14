@@ -1,5 +1,6 @@
 package FoodPassport.com
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import com.bumptech.glide.Glide
@@ -14,10 +15,10 @@ class MealDetailActivity : BaseActivity() {
 
     private var isFavorite = false
     private lateinit var btnFavorite: ImageButton
+    private lateinit var btnShare: Button
     private var mealId = ""
     private var mealNameEs = ""
     private var mealThumb = ""
-
     private var countryEs = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,10 +28,10 @@ class MealDetailActivity : BaseActivity() {
         mealId = intent.getStringExtra("mealId") ?: ""
         mealNameEs = intent.getStringExtra("mealNameEs") ?: ""
         mealThumb = intent.getStringExtra("mealThumb") ?: ""
-        // Recollir el país passat per Intent des de RecipesActivity
         countryEs = intent.getStringExtra("countryEs") ?: ""
 
         btnFavorite = findViewById(R.id.btnFavorite)
+        btnShare = findViewById(R.id.btnShare)
 
         if (mealNameEs.isNotEmpty()) {
             findViewById<TextView>(R.id.mealTitle).text = mealNameEs
@@ -48,6 +49,31 @@ class MealDetailActivity : BaseActivity() {
         loadMealDetail(mealId)
 
         btnFavorite.setOnClickListener { toggleFavorite() }
+        btnShare.setOnClickListener { shareRecipe() }
+    }
+
+    // Compartir la recepta per WhatsApp o altres apps
+    private fun shareRecipe() {
+        val text = "🍽 $mealNameEs\n\nMira esta receta en FoodPassport!"
+
+        // Intent que obre directament WhatsApp
+        val whatsappIntent = Intent(Intent.ACTION_SEND).apply {
+            type = "text/plain"
+            putExtra(Intent.EXTRA_TEXT, text)
+            setPackage("com.whatsapp")
+        }
+
+        try {
+            // Intentar obrir WhatsApp directament
+            startActivity(whatsappIntent)
+        } catch (e: Exception) {
+            // Si WhatsApp no està instal·lat, obrir el selector general d'apps
+            val fallbackIntent = Intent(Intent.ACTION_SEND).apply {
+                type = "text/plain"
+                putExtra(Intent.EXTRA_TEXT, text)
+            }
+            startActivity(Intent.createChooser(fallbackIntent, "Compartir receta"))
+        }
     }
 
     private fun checkIfFavorite() {
@@ -72,7 +98,6 @@ class MealDetailActivity : BaseActivity() {
                 Toast.makeText(this, "Eliminado de favoritos", Toast.LENGTH_SHORT).show()
             }
         } else {
-            // Ara també es guarda el país per poder agrupar els favorits per país a FavoritesActivity
             ref.setValue(mapOf(
                 "name" to mealNameEs,
                 "thumb" to mealThumb,

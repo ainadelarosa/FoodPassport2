@@ -19,30 +19,30 @@ class AvatarView @JvmOverloads constructor(
     private var initials = "?"
     private var bgColor = Color.parseColor("#9E0202")
 
-    // Pintura pel cercle de fons
+
     private val bgPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.FILL
     }
 
-    // Pintura per les inicials
+
     private val textPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = Color.WHITE
         textAlign = Paint.Align.CENTER
         typeface = Typeface.DEFAULT_BOLD
     }
 
-    // Llista de colors disponibles per als avatars
+
     private val colors = listOf(
-        "#E53935", // vermell
-        "#8E24AA", // lila
-        "#1E88E5", // blau
-        "#00897B", // verd fosc
-        "#FB8C00", // taronja
-        "#6D4C41", // marró
-        "#546E7A", // gris blau
-        "#D81B60", // rosa fosc
-        "#43A047", // verd
-        "#F4511E"  // vermell taronja
+        "#E53935",
+        "#8E24AA",
+        "#1E88E5",
+        "#00897B",
+        "#FB8C00",
+        "#6D4C41", 
+        "#546E7A",
+        "#D81B60",
+        "#43A047",
+        "#F4511E"
     )
 
     // Assigna el nom i recalcula les inicials i el color
