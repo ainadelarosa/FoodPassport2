@@ -24,17 +24,11 @@ open class BaseActivity : AppCompatActivity() {
         setContentView(R.layout.activity_base)
         drawerLayout = findViewById(R.id.drawerLayout)
 
-        // Fer que el toolbar respecti la status bar
         WindowCompat.setDecorFitsSystemWindows(window, false)
         val toolbar = findViewById<LinearLayout>(R.id.baseToolbar)
         ViewCompat.setOnApplyWindowInsetsListener(toolbar) { view, insets ->
             val statusBarHeight = insets.getInsets(WindowInsetsCompat.Type.statusBars()).top
-            view.setPadding(
-                view.paddingLeft,
-                statusBarHeight,
-                view.paddingRight,
-                view.paddingBottom
-            )
+            view.setPadding(view.paddingLeft, statusBarHeight, view.paddingRight, view.paddingBottom)
             insets
         }
 
@@ -47,6 +41,12 @@ open class BaseActivity : AppCompatActivity() {
         findViewById<ImageButton>(R.id.btnBack).setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
+        // Botó de perfil a la toolbar
+        findViewById<ImageButton>(R.id.btnProfile).setOnClickListener {
+            drawerLayout.closeDrawers()
+            if (this !is ProfileActivity)
+                startActivity(Intent(this, ProfileActivity::class.java))
+        }
 
         setupMenuItems()
         return drawerLayout
@@ -55,6 +55,8 @@ open class BaseActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         listenNotifications()
+        // Refrescar el nom i l'avatar cada vegada que es torna a la pantalla
+        loadMenuProfile()
     }
 
     override fun onPause() {
@@ -73,15 +75,29 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     private fun stopAllListeners() {
-        activeListeners.forEach { (ref, listener) ->
-            ref.removeEventListener(listener)
-        }
+        activeListeners.forEach { (ref, listener) -> ref.removeEventListener(listener) }
         activeListeners.clear()
+    }
+
+    // Carrega el nom de Firebase i actualitza el nom i l'avatar del menú lateral
+    private fun loadMenuProfile() {
+        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return
+        db.getReference("users/$uid/name").get().addOnSuccessListener { snap ->
+            val name = snap.getValue(String::class.java) ?: "Usuario"
+            findViewById<TextView>(R.id.menuUserName)?.text = name
+            // Passar el nom a l'AvatarView perquè generi les inicials i el color
+            findViewById<AvatarView>(R.id.menuAvatarView)?.setName(name)
+        }
     }
 
     private fun setupMenuItems() {
         val uid = FirebaseAuth.getInstance().currentUser?.uid
 
+        findViewById<LinearLayout>(R.id.menuProfile).setOnClickListener {
+            drawerLayout.closeDrawers()
+            if (this !is ProfileActivity)
+                startActivity(Intent(this, ProfileActivity::class.java))
+        }
         findViewById<LinearLayout>(R.id.menuCountries).setOnClickListener {
             drawerLayout.closeDrawers()
             if (this !is CountriesActivity)
@@ -115,13 +131,7 @@ open class BaseActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        if (uid != null) {
-            db.getReference("users/$uid/name").get()
-                .addOnSuccessListener { snap ->
-                    val name = snap.getValue(String::class.java) ?: "Usuario"
-                    findViewById<TextView>(R.id.menuUserName).text = name
-                }
-        }
+        if (uid != null) loadMenuProfile()
     }
 
     private fun listenNotifications() {
@@ -148,7 +158,6 @@ open class BaseActivity : AppCompatActivity() {
         fun listenGroupMessages(groupId: String) {
             val lastSeenRef = db.getReference("last_seen/$uid/$groupId")
             val msgsRef = db.getReference("groups/$groupId/messages")
-
             val msgsListener = object : ValueEventListener {
                 override fun onDataChange(msgsSnap: DataSnapshot) {
                     lastSeenRef.get().addOnSuccessListener { lastSeenSnap ->
@@ -157,9 +166,7 @@ open class BaseActivity : AppCompatActivity() {
                         msgsSnap.children.forEach { msg ->
                             val ts = msg.child("timestamp").getValue(Long::class.java) ?: 0L
                             val sender = msg.child("senderId").getValue(String::class.java) ?: ""
-                            if (ts > lastSeen && sender != uid) {
-                                unread++
-                            }
+                            if (ts > lastSeen && sender != uid) unread++
                         }
                         unreadMsgCount = unread
                         updateBadge()
@@ -167,11 +174,9 @@ open class BaseActivity : AppCompatActivity() {
                 }
                 override fun onCancelled(error: DatabaseError) {}
             }
-
             listen(msgsRef, msgsListener)
         }
 
-        // Listener d'invitacions
         val invRef = db.getReference("group_invites/$uid")
         val invListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -182,23 +187,14 @@ open class BaseActivity : AppCompatActivity() {
         }
         listen(invRef, invListener)
 
-        // Listener dels grups
         val groupsRef = db.getReference("user_groups/$uid")
         val groupsListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val groupIds = snapshot.children.mapNotNull { it.key }
-
-                if (groupIds.isEmpty()) {
-                    unreadMsgCount = 0
-                    updateBadge()
-                    return
-                }
-
+                if (groupIds.isEmpty()) { unreadMsgCount = 0; updateBadge(); return }
                 groupIds.forEach { groupId ->
                     val msgsRef = db.getReference("groups/$groupId/messages")
-                    if (!activeListeners.containsKey(msgsRef)) {
-                        listenGroupMessages(groupId)
-                    }
+                    if (!activeListeners.containsKey(msgsRef)) listenGroupMessages(groupId)
                 }
             }
             override fun onCancelled(error: DatabaseError) {}

@@ -27,28 +27,29 @@ class RecipesActivity : BaseActivity() {
         titleText.text = "Recetas de $countryEs"
         findViewById<TextView>(R.id.toolbarTitle).text = countryEs
 
-        loadRecipes(country)
+        loadRecipes(country, countryEs)
     }
 
-    private fun loadRecipes(country: String) {
+    // Afegit countryEs com a paràmetre per passar-lo a MealDetailActivity
+    private fun loadRecipes(country: String, countryEs: String) {
         val dbRef = database.getReference("recipes/${country.replace(" ", "_")}")
 
         dbRef.get().addOnSuccessListener { snapshot ->
             if (snapshot.exists()) {
-                fetchImagesAndShow(country, snapshot.children.mapNotNull { child ->
+                fetchImagesAndShow(country, countryEs, snapshot.children.mapNotNull { child ->
                     val id = child.key ?: return@mapNotNull null
                     val name = child.getValue(String::class.java) ?: return@mapNotNull null
                     Pair(id, name)
                 })
             } else {
-                translateAndSave(country, dbRef)
+                translateAndSave(country, countryEs, dbRef)
             }
         }.addOnFailureListener {
-            translateAndSave(country, dbRef)
+            translateAndSave(country, countryEs, dbRef)
         }
     }
 
-    private fun fetchImagesAndShow(country: String, savedMeals: List<Pair<String, String>>) {
+    private fun fetchImagesAndShow(country: String, countryEs: String, savedMeals: List<Pair<String, String>>) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val response = RetrofitClient.api.getRecipesByCountry(country)
@@ -58,16 +59,16 @@ class RecipesActivity : BaseActivity() {
                     Triple(id, name, thumbMap[id] ?: "")
                 }.sortedBy { it.second }
 
-                withContext(Dispatchers.Main) { mostrarRecetas(withImages) }
+                withContext(Dispatchers.Main) { mostrarRecetas(withImages, countryEs) }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
-                    mostrarRecetas(savedMeals.map { Triple(it.first, it.second, "") })
+                    mostrarRecetas(savedMeals.map { Triple(it.first, it.second, "") }, countryEs)
                 }
             }
         }
     }
 
-    private fun translateAndSave(country: String, dbRef: com.google.firebase.database.DatabaseReference) {
+    private fun translateAndSave(country: String, countryEs: String, dbRef: com.google.firebase.database.DatabaseReference) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val response = RetrofitClient.api.getRecipesByCountry(country)
@@ -86,7 +87,7 @@ class RecipesActivity : BaseActivity() {
                 dbRef.setValue(toSave)
 
                 val sorted = translated.sortedBy { it.second }
-                withContext(Dispatchers.Main) { mostrarRecetas(sorted) }
+                withContext(Dispatchers.Main) { mostrarRecetas(sorted, countryEs) }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
                     Toast.makeText(this@RecipesActivity, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
@@ -95,7 +96,8 @@ class RecipesActivity : BaseActivity() {
         }
     }
 
-    private fun mostrarRecetas(meals: List<Triple<String, String, String>>) {
+    // Afegit countryEs per passar-lo a MealDetailActivity
+    private fun mostrarRecetas(meals: List<Triple<String, String, String>>, countryEs: String) {
         val adapter = object : ArrayAdapter<String>(
             this,
             R.layout.item_country_list,
@@ -109,6 +111,8 @@ class RecipesActivity : BaseActivity() {
             intent.putExtra("mealId", meals[position].first)
             intent.putExtra("mealNameEs", meals[position].second)
             intent.putExtra("mealThumb", meals[position].third)
+            // Passa el nom del país en castellà per guardar-lo als favorits
+            intent.putExtra("countryEs", countryEs)
             startActivity(intent)
         }
     }

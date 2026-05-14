@@ -26,6 +26,7 @@ class GroupChatActivity : BaseActivity() {
     private var messagesListener: ValueEventListener? = null
     private var isSending = false
 
+
     data class ChatMessage(
         val messageId: String = "",
         val text: String = "",
@@ -38,9 +39,10 @@ class GroupChatActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setupDrawer(R.layout.activity_group_chat)
 
-        // Forçar que el layout es redimensioni quan surt el teclat
+
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         WindowCompat.setDecorFitsSystemWindows(window, true)
+
 
         groupId = intent.getStringExtra("groupId") ?: ""
         groupName = intent.getStringExtra("groupName") ?: ""
@@ -51,12 +53,14 @@ class GroupChatActivity : BaseActivity() {
         editMessage = findViewById(R.id.editMessage)
         btnSend = findViewById(R.id.btnSendMessage)
 
+
         db.getReference("users/$uid/name").get().addOnSuccessListener { snap ->
             myName = snap.getValue(String::class.java) ?: "Usuario"
         }
 
         adapter = ChatAdapter(this, messages, uid)
         listView.adapter = adapter
+
 
         messagesRef = db.getReference("groups/$groupId/messages")
 

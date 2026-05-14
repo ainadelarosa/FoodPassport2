@@ -37,6 +37,19 @@ class RegisterActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+
+            if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                Toast.makeText(this, "Introduce un email válido", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+
+            val localPart = email.substringBefore("@")
+            if (localPart.length < 5) {
+                Toast.makeText(this, "El email debe tener al menos 5 caracteres antes del @", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             auth.createUserWithEmailAndPassword(email, pass)
                 .addOnSuccessListener { result ->
                     val uid = result.user?.uid ?: return@addOnSuccessListener

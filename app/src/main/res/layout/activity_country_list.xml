@@ -15,6 +15,7 @@
         android:inputType="text"
         android:paddingStart="12dp"/>
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
@@ -27,7 +28,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="Visitados"
-            android:textSize="15sp"
+            android:textSize="13sp"
             android:textStyle="bold"/>
 
         <TextView
@@ -37,7 +38,18 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="Quiero visitar"
-            android:textSize="15sp"
+            android:textSize="13sp"
+            android:textStyle="bold"/>
+
+
+        <TextView
+            android:id="@+id/tabMyVisited"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Mis visitas"
+            android:textSize="13sp"
             android:textStyle="bold"/>
 
     </LinearLayout>
@@ -51,12 +63,25 @@
         android:textColor="#9E0202"
         android:textSize="13sp"/>
 
+
+    <TextView
+        android:id="@+id/emptyTextCountry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:text="Aún no has marcado ningún país como visitado"
+        android:textColor="#888888"
+        android:textSize="15sp"
+        android:visibility="gone"/>
+
     <ListView
         android:id="@+id/listViewCountryList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="#FFFFFF"
-        android:dividerHeight="1dp"/>
+        android:dividerHeight="1dp"
+        android:cacheColorHint="#00000000"/>
 
 </LinearLayout>
