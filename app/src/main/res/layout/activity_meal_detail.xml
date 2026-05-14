@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Imatge -->
+            <!-- Imatge amb botó de favorits a sobre -->
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="220dp">
@@ -44,15 +44,35 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <!-- Títol -->
-                <TextView
-                    android:id="@+id/mealTitle"
+                <!-- Títol i botó de compartir en la mateixa fila -->
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="24sp"
-                    android:textColor="#1A1A1A"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="16dp"/>
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:id="@+id/mealTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="24sp"
+                        android:textColor="#1A1A1A"
+                        android:textStyle="bold"/>
+
+                    <!-- Botó de compartir per WhatsApp -->
+                    <Button
+                        android:id="@+id/btnShare"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Compartir"
+                        android:backgroundTint="#9E0202"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"
+                        android:layout_marginStart="8dp"/>
+
+                </LinearLayout>
 
                 <!-- SECCIÓ INGREDIENTS -->
                 <LinearLayout
@@ -65,7 +85,6 @@
                     android:layout_marginBottom="12dp"
                     android:visibility="gone">
 
-                    <!-- Capçalera ingredients -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -114,7 +133,6 @@
                     android:padding="16dp"
                     android:layout_marginBottom="16dp">
 
-                    <!-- Capçalera preparació -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -158,4 +176,4 @@
         </LinearLayout>
     </ScrollView>
 
-</LinearLayout> 
+</LinearLayout>
